@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import useLocalPersist from "@/hooks/useLocalPersist";
 import { useEffect, useState } from "react";
@@ -56,29 +55,20 @@ export default function Home() {
   const [min, setMinute] = useState(0);
   const [sec, setSec] = useState(0);
 
-  const [showSec, setShowSec] = useLocalPersist<boolean>("show-seconds", false);
-  const [showAmPm, setAmPm] = useLocalPersist<boolean>("show-am-pm", true);
-  const [fontWeight, setFontWeight] = useLocalPersist<number>(
-    "font-weight",
-    300
-  );
-  const [subFontSize, setSubFontSize] = useLocalPersist<number>(
-    "sub-font-size",
-    25
-  );
-  const [fontSize, setFontSize] = useLocalPersist<number>("font-size", 100);
-  const [showDate, setShowDate] = useLocalPersist<boolean>("show-date", true);
-  const [alignment, setAlignment] = useLocalPersist<string>(
-    "alignment",
-    "start"
-  );
-  const [showYear, setShowYear] = useLocalPersist<boolean>("show-year", false);
-  const [showDay, setShowDay] = useLocalPersist<boolean>("show-day", true);
-  const [clockHorizontalAlign, setHorizontal] = useLocalPersist<string>(
+  const [showSec, setShowSec] = useLocalPersist("show-seconds", false);
+  const [showAmPm, setAmPm] = useLocalPersist("show-am-pm", true);
+  const [fontWeight, setFontWeight] = useLocalPersist("font-weight", 300);
+  const [subFontSize, setSubFontSize] = useLocalPersist("sub-font-size", 25);
+  const [fontSize, setFontSize] = useLocalPersist("font-size", 100);
+  const [showDate, setShowDate] = useLocalPersist("show-date", true);
+  const [alignment, setAlignment] = useLocalPersist("alignment", "start");
+  const [showYear, setShowYear] = useLocalPersist("show-year", false);
+  const [showDay, setShowDay] = useLocalPersist("show-day", true);
+  const [clockHorizontalAlign, setHorizontal] = useLocalPersist(
     "hor-align",
     "center"
   );
-  const [clockVerticleAlign, setVerticle] = useLocalPersist<string>(
+  const [clockVerticleAlign, setVerticle] = useLocalPersist(
     "ver-align",
     "center"
   );
@@ -195,7 +185,7 @@ export default function Home() {
               name="show-am-pm"
               className="toggle"
               defaultChecked={showAmPm}
-              onChange={(e) => setAmPm((prev) => !prev)}
+              onChange={(e) => setAmPm((prev: boolean) => !prev)}
             />
           </div>
           <div className="my-2 flex justify-between">
@@ -207,7 +197,7 @@ export default function Home() {
               name="show-year"
               className="toggle"
               defaultChecked={showYear}
-              onChange={(e) => setShowYear((prev) => !prev)}
+              onChange={(e) => setShowYear((prev: boolean) => !prev)}
             />
           </div>
           <div className="my-2 flex justify-between">
@@ -219,7 +209,7 @@ export default function Home() {
               name="show-date"
               className="toggle"
               defaultChecked={showDate}
-              onChange={(e) => setShowDate((prev) => !prev)}
+              onChange={(e) => setShowDate((prev: boolean) => !prev)}
             />
           </div>
           <div className="my-2 flex justify-between">
@@ -231,7 +221,7 @@ export default function Home() {
               name="show-day"
               className="toggle"
               defaultChecked={showDay}
-              onChange={(e) => setShowDay((prev) => !prev)}
+              onChange={(e) => setShowDay((prev: boolean) => !prev)}
             />
           </div>
           <div className="my-2">
@@ -258,7 +248,7 @@ export default function Home() {
               name="show-seconds"
               className="toggle"
               defaultChecked={showSec}
-              onChange={(e) => setShowSec((prev) => !prev)}
+              onChange={(e) => setShowSec((prev: boolean) => !prev)}
             />
           </div>
           <div className="modal-action">
@@ -268,6 +258,7 @@ export default function Home() {
       </dialog>
 
       <div
+        id="clock"
         className="flex min-h-[100vh] min-w-[100vw]"
         style={{
           alignItems: clockHorizontalAlign,

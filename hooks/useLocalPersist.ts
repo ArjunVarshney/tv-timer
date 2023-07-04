@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 
 type UseLocalPersist<T> = (
@@ -7,13 +8,12 @@ type UseLocalPersist<T> = (
 
 const useLocalPersist: UseLocalPersist<any> = (key, initialValue) => {
   const isClient = typeof window !== "undefined";
-  const [state, setState] = useState(() => {
-    if (isClient) {
-      const storedValue = window.localStorage.getItem(key);
-      return storedValue !== null ? JSON.parse(storedValue) : initialValue;
-    }
-    return initialValue;
-  });
+  const [state, setState] = useState(initialValue);
+
+  useEffect(() => {
+    const storedValue = window.localStorage.getItem(key);
+    setState(storedValue !== null ? JSON.parse(storedValue) : initialValue);
+  }, []);
 
   useEffect(() => {
     if (isClient) {
