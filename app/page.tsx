@@ -1,4 +1,6 @@
+// @ts-nocheck
 "use client";
+import useLocalPersist from "@/hooks/useLocalPersist";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -54,17 +56,32 @@ export default function Home() {
   const [min, setMinute] = useState(0);
   const [sec, setSec] = useState(0);
 
-  const [showSec, setShowSec] = useState(false);
-  const [showAmPm, setAmPm] = useState(true);
-  const [fontWeight, setFontWeight] = useState(300);
-  const [subFontSize, setSubFontSize] = useState(25);
-  const [fontSize, setFontSize] = useState(100);
-  const [showDate, setShowDate] = useState(true);
-  const [alignment, setAlignment] = useState("start");
-  const [showYear, setShowYear] = useState(false);
-  const [showDay, setShowDay] = useState(true);
-  const [clockHorizontalAlign, setHorizontal] = useState("center");
-  const [clockVerticleAlign, setVerticle] = useState("center");
+  const [showSec, setShowSec] = useLocalPersist<boolean>("show-seconds", false);
+  const [showAmPm, setAmPm] = useLocalPersist<boolean>("show-am-pm", true);
+  const [fontWeight, setFontWeight] = useLocalPersist<number>(
+    "font-weight",
+    300
+  );
+  const [subFontSize, setSubFontSize] = useLocalPersist<number>(
+    "sub-font-size",
+    25
+  );
+  const [fontSize, setFontSize] = useLocalPersist<number>("font-size", 100);
+  const [showDate, setShowDate] = useLocalPersist<boolean>("show-date", true);
+  const [alignment, setAlignment] = useLocalPersist<string>(
+    "alignment",
+    "start"
+  );
+  const [showYear, setShowYear] = useLocalPersist<boolean>("show-year", false);
+  const [showDay, setShowDay] = useLocalPersist<boolean>("show-day", true);
+  const [clockHorizontalAlign, setHorizontal] = useLocalPersist<string>(
+    "hor-align",
+    "center"
+  );
+  const [clockVerticleAlign, setVerticle] = useLocalPersist<string>(
+    "ver-align",
+    "center"
+  );
 
   useEffect(() => {
     setInterval(() => {
