@@ -72,6 +72,7 @@ export default function Home() {
     "ver-align",
     "center"
   );
+  const [clockOpacity, setOpacity] = useLocalPersist("clock-opacity", 80);
 
   useEffect(() => {
     setInterval(() => {
@@ -99,7 +100,7 @@ export default function Home() {
       {/* @ts-ignore */}
       <div onClick={() => window.setting.showModal()}>
         <svg
-          className="fill-white h-[50px] w-[50px] opacity-5 absolute top-10 right-10"
+          className="fill-white h-[50px] w-[50px] opacity-5 absolute top-10 right-10 z-30"
           viewBox="0 0 1024 1024"
         >
           <path d="M998.4 670.72c-192-151.04 0-325.12 0-325.12l5.12-5.12-102.4-176.64-10.24 5.12c-33.28 15.36-64 20.48-92.16 20.48-148.48 0-189.44-184.32-189.44-184.32V0H407.04l-2.56 10.24c-20.48 148.48-117.76 176.64-192 176.64-48.64 0-87.04-12.8-87.04-12.8l-7.68-2.56-99.84 176.64 7.68 5.12c192 151.04 0 325.12 0 325.12l-5.12 5.12 102.4 176.64 10.24-5.12c35.84-15.36 66.56-20.48 92.16-20.48 148.48 0 189.44 181.76 189.44 181.76l2.56 7.68h202.24l2.56-10.24c20.48-145.92 117.76-174.08 192-174.08 48.64 0 87.04 12.8 87.04 12.8l7.68 2.56 102.4-176.64-12.8-7.68zM880.64 793.6c-17.92-2.56-43.52-7.68-69.12-7.68-125.44 0-209.92 66.56-238.08 186.88H453.12c-28.16-79.36-97.28-189.44-230.4-189.44-25.6 0-51.2 5.12-79.36 12.8L84.48 691.2c30.72-35.84 81.92-107.52 76.8-194.56-2.56-58.88-28.16-112.64-79.36-161.28L140.8 230.4c17.92 2.56 43.52 7.68 69.12 7.68 125.44 0 209.92-66.56 238.08-186.88h120.32c23.04 64 84.48 189.44 230.4 189.44 25.6 0 51.2-5.12 79.36-12.8l61.44 104.96c-30.72 35.84-81.92 107.52-79.36 194.56 2.56 58.88 28.16 112.64 79.36 161.28L880.64 793.6z" />
@@ -173,7 +174,23 @@ export default function Home() {
               className="range mt-2"
               name="font-weight"
               step={100}
+              defaultValue={fontWeight}
               onChange={(e) => setFontWeight(parseInt(e.target.value))}
+            />
+          </div>
+          <div className="my-2">
+            <label className="label">
+              <span className="label-text">Clock Opacity</span>
+            </label>
+            <input
+              type="range"
+              min={10}
+              max={100}
+              className="range mt-2"
+              name="font-weight"
+              step={10}
+              defaultValue={clockOpacity}
+              onChange={(e) => setOpacity(parseInt(e.target.value))}
             />
           </div>
           <div className="my-2 flex justify-between">
@@ -263,6 +280,7 @@ export default function Home() {
         style={{
           alignItems: clockHorizontalAlign,
           justifyContent: clockVerticleAlign,
+          opacity: `${clockOpacity}%`,
         }}
       >
         <div
