@@ -73,6 +73,10 @@ export default function Home() {
     "center"
   );
   const [clockOpacity, setOpacity] = useLocalPersist("clock-opacity", 80);
+  const [screenPadding, setScreenPadding] = useLocalPersist(
+    "screen-padding",
+    20
+  );
 
   useEffect(() => {
     setInterval(() => {
@@ -193,6 +197,21 @@ export default function Home() {
               onChange={(e) => setOpacity(parseInt(e.target.value))}
             />
           </div>
+          <div className="my-2">
+            <label className="label">
+              <span className="label-text">Screen Padding</span>
+            </label>
+            <input
+              type="range"
+              min={0}
+              max={200}
+              className="range mt-2"
+              name="font-weight"
+              step={10}
+              defaultValue={screenPadding}
+              onChange={(e) => setScreenPadding(parseInt(e.target.value))}
+            />
+          </div>
           <div className="my-2 flex justify-between">
             <label className="label">
               <span className="label-text">Show am(or pm)</span>
@@ -281,6 +300,7 @@ export default function Home() {
           alignItems: clockHorizontalAlign,
           justifyContent: clockVerticleAlign,
           opacity: `${clockOpacity}%`,
+          padding: `${screenPadding}px`,
         }}
       >
         <div
