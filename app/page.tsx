@@ -82,7 +82,7 @@ export default function Home() {
     "show-life-timer",
     false
   );
-  const [lifeTimer, setLifeTimer] = useLocalPersist("life-timer", 1051920);
+  const [lifeTimer, setLifeTimer] = useLocalPersist("life-timer", 63072000);
 
   useEffect(() => {
     setInterval(() => {
@@ -102,7 +102,7 @@ export default function Home() {
       setHour(hr);
       setMinute(min);
       setSec(sec);
-      setLifeTimer(Math.floor(1051920 + 1690277745 - Date.now() / 1000));
+      setLifeTimer(Math.floor(63072000 + 1690277745 - Date.now() / 1000));
     }, 1000);
   }, []);
 
@@ -362,7 +362,7 @@ export default function Home() {
 
             {showDay && <div>{days[day]}</div>}
           </div>
-          
+
           {showLifeTimer && (
             <div className=" text-[100px] font-light opacity-50">
               {lifeTimer}
