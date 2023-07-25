@@ -78,6 +78,12 @@ export default function Home() {
     20
   );
 
+  const [showLifeTimer, setShowLifeTimer] = useLocalPersist(
+    "show-life-timer",
+    false
+  );
+  const [lifeTimer, setLifeTimer] = useLocalPersist("life-timer", 1051920);
+
   useEffect(() => {
     setInterval(() => {
       const date = new Date();
@@ -96,6 +102,7 @@ export default function Home() {
       setHour(hr);
       setMinute(min);
       setSec(sec);
+      setLifeTimer(Math.floor(1051920 + 1690277745 - Date.now() / 1000));
     }, 1000);
   }, []);
 
@@ -287,6 +294,18 @@ export default function Home() {
               onChange={(e) => setShowSec((prev: boolean) => !prev)}
             />
           </div>
+          <div className="my-2 flex justify-between">
+            <label className="label">
+              <span className="label-text">Show Life Timer</span>
+            </label>
+            <input
+              type="checkbox"
+              name="show-life-timer"
+              className="toggle"
+              defaultChecked={showLifeTimer}
+              onChange={(e) => setShowLifeTimer((prev: boolean) => !prev)}
+            />
+          </div>
           <div className="modal-action">
             <button className="btn">Close</button>
           </div>
@@ -343,6 +362,8 @@ export default function Home() {
 
             {showDay && <div>{days[day]}</div>}
           </div>
+
+          <div className=" text-[100px] font-light opacity-50">{lifeTimer}</div>
         </div>
       </div>
     </main>
