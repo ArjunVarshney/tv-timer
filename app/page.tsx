@@ -362,8 +362,12 @@ export default function Home() {
 
             {showDay && <div>{days[day]}</div>}
           </div>
-
-          <div className=" text-[100px] font-light opacity-50">{lifeTimer}</div>
+          
+          {showLifeTimer && (
+            <div className=" text-[100px] font-light opacity-50">
+              {lifeTimer}
+            </div>
+          )}
         </div>
       </div>
     </main>
